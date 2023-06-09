@@ -1,0 +1,2 @@
+### Get all Pokemons
+GET http://localhost:3003/pokemon/allpokemons

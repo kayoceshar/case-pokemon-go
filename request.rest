@@ -1,2 +1,24 @@
 ### Get all Pokemons
 GET http://localhost:3003/pokemon/allpokemons
+
+### Get Pokemon by Name
+GET http://localhost:3003/pokemon/saur
+
+### Get Pokemon by Type
+GET http://localhost:3003/pokemon/type/grass
+
+
+### Get Pokemon by Types
+GET http://localhost:3003/pokemon/types/pokemons
+Content-Type: application/json
+
+{
+    "type1": "poison",
+    "type2": "grass"  
+}
+
+### Get all Pokemons
+GET http://localhost:3003/pokemon/count/pokemons
+
+
+

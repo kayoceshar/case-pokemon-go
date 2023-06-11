@@ -11,9 +11,14 @@ import { InputDTO } from '../model/pokemon';
 const pokemonDataBase = new PokemonDataBase();
 
 export class PokemonBusiness {
-  public getAllPokemons = async () => {
+  public getAllPokemons = async (page: number) => {
     try {
-      const result = await pokemonDataBase.getAllPokemons();
+      if (!page || page === 0) {
+        page = 1;
+      }
+      const size = 20;
+      const offset = size * (Number(page) - 1);
+      const result = await pokemonDataBase.getAllPokemons(offset);
       return result;
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message);
@@ -63,7 +68,6 @@ export class PokemonBusiness {
       const { type1, type2 } = input;
 
       const result = await pokemonDataBase.getPokemonByTwoTypes(input);
-
       return result;
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message);
@@ -73,7 +77,6 @@ export class PokemonBusiness {
   public countAllPokemons = async () => {
     try {
       const result = await pokemonDataBase.countAllPokemons();
-
       return result;
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message);

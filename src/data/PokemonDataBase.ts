@@ -4,8 +4,10 @@ import { BaseDatabase } from "./BaseDataBase"
 export class PokemonDataBase extends BaseDatabase {
   private table = 'Pokemon_go'
 
-  public getAllPokemons = async () => {
-    const result = await PokemonDataBase.connection(this.table)               
+  public getAllPokemons = async (offset: number) => {
+    const result = await PokemonDataBase.connection(this.table)
+    .offset(offset)
+    .limit(20)               
     return result
   }
 

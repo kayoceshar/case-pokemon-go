@@ -8,7 +8,8 @@ const pokemonBusiness = new PokemonBusiness();
 export class PokemonController {
   public getAllPokemons = async (req: Request, res: Response) => {
     try {
-      const result = await pokemonBusiness.getAllPokemons();
+      const page = req.body.page;
+      const result = await pokemonBusiness.getAllPokemons(page);
       res.status(200).send(result);
     } catch (error: any) {
       res
@@ -67,6 +68,4 @@ export class PokemonController {
         .send(error.message || error.sqlMessage);
     }
   };
-
-
 }

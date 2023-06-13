@@ -3,15 +3,13 @@ GET http://localhost:3003/pokemon/allpokemons
 Content-Type: application/json
 
 {
-    "page":3
+    "page":1
 }
 ### Get Pokemon by Name
-GET http://localhost:3003/pokemon/saur
+GET http://localhost:3003/pokemon/charmander
 
 ### Get Pokemon by Type
-GET http://localhost:3003/pokemon/type/grass
-
-
+GET http://localhost:3003/pokemon/type/ice
 
 ### Get Pokemon by Types
 GET http://localhost:3003/pokemon/types/pokemons

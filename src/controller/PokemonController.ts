@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
 import { PokemonBusiness } from '../business/PokemonBusiness';
-import { log } from 'console';
 import { InputDTO } from '../model/pokemon';
 
-const pokemonBusiness = new PokemonBusiness();
-
 export class PokemonController {
-  public getAllPokemons = async (req: Request, res: Response) => {
+  constructor(private pokemonBusiness: PokemonBusiness) {}
+  public getAllPokemons = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     try {
       const page = req.body.page;
-      const result = await pokemonBusiness.getAllPokemons(page);
+      const result = await this.pokemonBusiness.getAllPokemons(page);
       res.status(200).send(result);
     } catch (error: any) {
       res
@@ -18,10 +19,13 @@ export class PokemonController {
     }
   };
 
-  public getPokemonByName = async (req: Request, res: Response) => {
+  public getPokemonByName = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     try {
       const name = req.params.name as string;
-      const result = await pokemonBusiness.getPokemonByName(name);
+      const result = await this.pokemonBusiness.getPokemonByName(name);
       res.status(200).send(result);
     } catch (error: any) {
       res
@@ -30,12 +34,14 @@ export class PokemonController {
     }
   };
 
-  public getPokemonsByType = async (req: Request, res: Response) => {
+  public getPokemonsByType = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     try {
       const type = req.params.type as string;
-      const result = await pokemonBusiness.getPokemonsByType(type);
+      const result = await this.pokemonBusiness.getPokemonsByType(type);
       res.status(200).send(result);
-      console.log(type);
     } catch (error: any) {
       res
         .status(error.statusCode || 400)
@@ -43,13 +49,16 @@ export class PokemonController {
     }
   };
 
-  public getPokemonByTwoTypes = async (req: Request, res: Response) => {
+  public getPokemonByTwoTypes = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     try {
       const input: InputDTO = {
         type1: req.body.type1,
         type2: req.body.type2,
       };
-      const result = await pokemonBusiness.getPokemonByTwoTypes(input);
+      const result = await this.pokemonBusiness.getPokemonByTwoTypes(input);
       res.status(200).send(result);
     } catch (error: any) {
       res
@@ -58,9 +67,12 @@ export class PokemonController {
     }
   };
 
-  public countAllPokemons = async (req: Request, res: Response) => {
+  public countAllPokemons = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     try {
-      const result = await pokemonBusiness.countAllPokemons();
+      const result = await this.pokemonBusiness.countAllPokemons();
       res.status(200).send(result);
     } catch (error: any) {
       res

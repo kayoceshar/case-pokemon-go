@@ -6,54 +6,54 @@ import {
   NoExistingType,
   TypeNotFound,
 } from '../error/pokemonErrors';
-import { InputDTO } from '../model/pokemon';
+import { InputDTO, pokemon } from '../model/pokemon';
+import { PokemonRepository } from './PokemonRepository';
 
-const pokemonDataBase = new PokemonDataBase();
 
 export class PokemonBusiness {
-  public getAllPokemons = async (page: number) => {
+  constructor(
+      private pokemonDataBase: PokemonRepository
+  ){}
+  public getAllPokemons = async (page: number):Promise<pokemon[]> => {
     try {
-      if (!page || page === 0) {
+      if (!page || page <= 0) {
         page = 1;
       }
       const size = 20;
       const offset = size * (Number(page) - 1);
-      const result = await pokemonDataBase.getAllPokemons(offset);
+      const result = await this.pokemonDataBase.getAllPokemons(offset);
       return result;
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message);
     }
   };
 
-  public getPokemonByName = async (name: string) => {
+  public getPokemonByName = async (name: string):Promise<pokemon[]> => {
     try {
       if (!name) {
         throw new NameNotFound();
       }
 
-      const result = await pokemonDataBase.getPokemonByName(name);
+      const result = await this.pokemonDataBase.getPokemonByName(name);
 
       if (result === undefined) {
         throw new NoExistingPokemon();
       }
-
       return result;
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message);
     }
   };
 
-  public getPokemonsByType = async (type: string) => {
+  public getPokemonsByType = async (type: string):Promise<pokemon[]> => {
     try {
       if (!type) {
         throw new TypeNotFound();
       }
 
-      console.log(type);
+      const result = await this.pokemonDataBase.getPokemonsByType(type);
 
-      const result = await pokemonDataBase.getPokemonsByType(type);
-
-      if (result === undefined) {
+      if (result.length === 0) {
         throw new NoExistingType();
       }
 
@@ -63,20 +63,31 @@ export class PokemonBusiness {
     }
   };
 
-  public getPokemonByTwoTypes = async (input: InputDTO) => {
+  public getPokemonByTwoTypes = async (input: InputDTO):Promise<pokemon[]> => {
     try {
       const { type1, type2 } = input;
 
-      const result = await pokemonDataBase.getPokemonByTwoTypes(input);
+      if (!input.type1) {
+        input.type1 = '';
+      }
+
+      if (!input.type2) {
+        input.type2 = '';
+      }
+
+      const result = await this.pokemonDataBase.getPokemonByTwoTypes(input);
+      if (result.length === 0) {
+        throw new NoExistingType();
+      }
       return result;
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message);
     }
   };
 
-  public countAllPokemons = async () => {
+  public countAllPokemons = async ():Promise<any> => {
     try {
-      const result = await pokemonDataBase.countAllPokemons();
+      const result = await this.pokemonDataBase.countAllPokemons();
       return result;
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message);

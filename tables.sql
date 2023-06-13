@@ -27,6 +27,6 @@ CREATE TABLE IF NOT EXISTS Pokemons(
   New INT,
   Not_Gettable INT,
   Future_Evolve INT,
-  100_cp_40 INT,
-  100_cp_39 INT
+  cp_40 INT,
+  cp_39 INT
 );

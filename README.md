@@ -1,22 +1,14 @@
-# Teste prático da EstanteVirtual
+# Desafio Pokémon Go.
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
-## Jogos Olímpicos
+## Pokémon Go
 
 Enunciado:
 
-Jogos Olímpicos
-Com a chegada dos jogos olímpicos, fomos designados para construir uma API REST em Ruby para o COB (Comitê Olímico Brasileiro), que será responsável por marcar e dizer os vencedores das seguintes modalidades:
+Sua missão é importar os dados do Pokemon Go, que estão no excel, e criar uma API usando NodeJS para que possamos consumir estes dados de maneira prática, rápida e automatizada.
 
-100m rasos: Menor tempo vence
-Lançamento de Dardo: Maior distância vence
-
-
-Detalhes:
-A API não deve aceitar cadastros de resultados se a competição já estiver encerrada.
-A API pode retornar o ranking/resultado parcial, caso a disputa ainda não estiver encerrada.
-No caso da competição do lançamento de dardos, cada atleta terá 3 chances, e o resultado da competição deverá levar em conta o lançamento mais distante de cada atleta.
+Esta API deverá seguir o mínimo de práticas RESTful e conter listagens, busca, paginação e filtros. Fique à vontade para decidir quais filtros são mais interessantes.
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
@@ -25,13 +17,15 @@ No caso da competição do lançamento de dardos, cada atleta terá 3 chances, e
 🎯 EndPoints 
 
 
- 1. **Criar uma competição**  
+ 1. **Pegar todos os pokémons**  
     
- 2. **Cadastrar resultados para uma competição**
+ 2. **Pegar pokémon pelo nome**
         
- 3. **Finalizar uma competição**
+ 3. **Pegar pokémon pelo tipo**
     
- 4. **Retornar o ranking da competição, exibindo a posição final de cada atleta**
+ 4. **Pegar pokém por dois tipos**
+ 
+ 5. **Retornar o número existente de pokémons**
     
  
 

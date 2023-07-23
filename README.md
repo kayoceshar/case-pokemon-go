@@ -39,7 +39,7 @@ Esta API deverá seguir o mínimo de práticas RESTful e conter listagens, busca
 - Knex.js
 	
 - ### Para Rodar o projeto:
-- git clone https://github.com/kayoceshar/Cookenu.git
+- git clone https://github.com/kayoceshar/case-pokemon-go.git
 - npm install
 - criar um arquivo .env com as informações do seus banco de dados
 - variáveis do arquivo .env:
